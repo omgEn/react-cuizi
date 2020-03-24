@@ -1,24 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {Route,Switch,Redirect,NavLink} from 'react-router-dom';
+import {routes} from './router';
+import { Icon } from 'antd-mobile';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Switch>
+          {
+              routes.map((item)=>{
+                  return <Route key={item.path} path={item.path} component={item.component}/>
+              })
+          }
+          <Redirect from='/' to='/home' exact />
+          <Redirect to="/404" exact />
+      </Switch>
+      <ul className="footer">
+        <li><NavLink to='/home'><Icon type="cross-circle" size="sm"/><h5>首页</h5></NavLink></li>
+        <li><NavLink to='/category'><Icon type="cross-circle" size="sm"/><h5>分类</h5></NavLink></li>
+        <li><NavLink to='/cart'><Icon type="cross-circle" size="sm"/><h5>购物车</h5></NavLink></li>
+        <li><NavLink to='/user'><Icon type="cross-circle" size="sm"/><h5>个人中心</h5></NavLink></li>
+      </ul>
+     
     </div>
   );
 }

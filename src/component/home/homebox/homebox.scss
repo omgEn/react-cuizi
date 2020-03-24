@@ -1,0 +1,12 @@
+.home-box{
+    padding-top: .14rem;
+    &::before{
+        position:absolute;
+        content:"";
+        top:0;
+        left: .1rem;
+        right: .1rem;
+        width:calc(100% -1.2rem);
+        border-top:.01rem dotted #e9e9e9;
+    }
+}
